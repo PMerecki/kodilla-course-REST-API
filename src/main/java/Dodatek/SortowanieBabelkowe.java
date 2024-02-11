@@ -1,6 +1,6 @@
 package Dodatek;
 
-public class SortowanieBąbelkowe {
+public class SortowanieBabelkowe {
 
     public static void sortuj(int[] tablica) {
         int n = tablica.length;
