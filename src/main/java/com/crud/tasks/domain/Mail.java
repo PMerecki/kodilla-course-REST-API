@@ -1,13 +1,21 @@
 package com.crud.tasks.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Mail {
-    private final String mailTo;
-    private final String subject;
-    private final String message;
-    private final String toCc;
+    private String mailTo;
+    private String subject;
+    private String message;
+    private String toCc;
+
+    public Mail(String adminMail, String subject, String s) {
+    }
 }
+
