@@ -38,4 +38,4 @@ out/
 
 learning-git/
 
-**/application.properties
+.application.properties
