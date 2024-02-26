@@ -5,6 +5,7 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class TaskController {
 
     private final DbService service;
     private final TaskMapper taskMapper;
+
     @GetMapping
     public ResponseEntity<List<TaskDto>> getTasks() {
         List<Task> tasks = service.getAllTasks();
@@ -26,8 +28,15 @@ public class TaskController {
     }
 
     @GetMapping(value = "/{taskId}")
-    public ResponseEntity<TaskDto> getTask(@PathVariable Long taskId) throws TaskNotFoundException {
-        return ResponseEntity.ok(taskMapper.mapToTaskDto(service.getTask(taskId)));
+    public ResponseEntity<TaskDto> getTask(@PathVariable Long taskId) {
+        try {
+            Task task = service.getTask(taskId);
+            TaskDto taskDto = taskMapper.mapToTaskDto(task);
+            return ResponseEntity.ok(taskDto);
+        } catch (TaskNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new TaskDto(null, null, "Task with given id doesn't exist"));
+        }
     }
 
     @DeleteMapping(value = "/{taskId}")
