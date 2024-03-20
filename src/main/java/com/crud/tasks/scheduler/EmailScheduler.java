@@ -26,7 +26,7 @@ public class EmailScheduler {
         long size = taskRepository.count();
         String taskWord = (size == 1) ? "task" : "tasks";
 
-        mailCreatorService.buildNumberOfTasksEmail("Currently in database you got: " + size + " " + taskWord);
+        mailCreatorService.buildNumberOfTasksEmail("Currently in database you got: " + size + " " + taskWord, true, false);
 
         simpleEmailService.send(
                 new Mail(
