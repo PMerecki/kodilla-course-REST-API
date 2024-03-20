@@ -62,7 +62,7 @@ public class MailCreatorService {
                 companyDetails.getCompanyGoal() + " " + companyDetails.getCompanyPhone());
         context.setVariable("goodbye_message", "Best regards");
         context.setVariable("show_button", true);
-        context.setVariable("is_friend", true);
+        context.setVariable("is_friend", false);
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
         templateEngine.process("mail/number-of-tasks-mail", context);
