@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Number of Cards Email</title>
+</head>
+<body>
+<h1 th:text="${preview}">Number of cards existing on your Trello account</h1>
+<p th:text="${message}">This is the message content.</p>
+
+<p>If you want to manage your tasks, you can do so by visiting our website:</p>
+<a th:href="${tasks_url}" th:text="${button}">Visit website</a>
+
+<hr>
+
+<p th:text="${company_details}">Company details will be displayed here.</p>
+
+<hr>
+
+<h2>Application Functionality:</h2>
+<ul>
+  <li th:each="functionality : ${application_functionality}" th:text="${functionality}">Functionality item</li>
+</ul>
+
+<hr>
+
+<p th:text="${goodbye_message}">Best regards</p>
+
+<p th:if="${show_button}">
+  <button th:if="${is_friend}" th:text="${button}">Click me</button>
+</p>
+
+<p>Admin Configuration: <span th:text="${admin_config}">Admin config will be displayed here.</span></p>
+</body>
+</html>
