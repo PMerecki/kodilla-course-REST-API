@@ -25,29 +25,27 @@ public class MailCreatorService {
     private TemplateEngine templateEngine;
 
     public String buildTrelloCardEmail(String message) {
-
         List<String> functionality = new ArrayList<>();
         functionality.add("You can manage your tasks");
         functionality.add("Provides connection with Trello Account");
         functionality.add("Application allows sending tasks to Trello");
 
-        Context context1 = new Context();
-        context1.setVariable("preview", "New card has been added on your Trello account");
-        context1.setVariable("message", message);
-        context1.setVariable("tasks_url", "https://pmerecki.github.io/");
-        context1.setVariable("button", "Visit website");
-        context1.setVariable("company_details", companyDetails.getCompanyName() + "\n" +
+        Context context = new Context();
+        context.setVariable("preview", "New card has been added on your Trello account");
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "https://pmerecki.github.io/");
+        context.setVariable("button", "Visit website");
+        context.setVariable("company_details", companyDetails.getCompanyName() + "\n" +
                 companyDetails.getCompanyGoal() + " " + companyDetails.getCompanyPhone());
-        context1.setVariable("goodbye_message", "Best regards");
-        context1.setVariable("show_button", false);
-        context1.setVariable("is_friend", true);
-        context1.setVariable("admin_config", adminConfig);
-        context1.setVariable("application_functionality", functionality);
-        return templateEngine.process("mail/created-trello-card-mail", context1);
+        context.setVariable("goodbye_message", "Best regards");
+        context.setVariable("show_button", false);
+        context.setVariable("is_friend", true);
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("application_functionality", functionality);
+        return templateEngine.process("mail/created-trello-card-mail", context);
     }
 
     public String buildNumberOfTasksEmail(String message) {
-
         List<String> functionality = new ArrayList<>();
         functionality.add("You can manage your tasks");
         functionality.add("Provides connection with Trello Account");
@@ -61,10 +59,11 @@ public class MailCreatorService {
         context2.setVariable("company_details", companyDetails.getCompanyName() + "\n" +
                 companyDetails.getCompanyGoal() + " " + companyDetails.getCompanyPhone());
         context2.setVariable("goodbye_message", "Best regards");
-        context2.setVariable("show_button2", true);
-        context2.setVariable("is_friend2", false);
+        context2.setVariable("show_button", true);
+        context2.setVariable("is_friend", false);
         context2.setVariable("admin_config", adminConfig);
         context2.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/number-of-tasks-mail", context2);
     }
 }
+

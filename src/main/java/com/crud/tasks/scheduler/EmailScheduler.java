@@ -26,13 +26,13 @@ public class EmailScheduler {
         long size = taskRepository.count();
         String taskWord = (size == 1) ? "task" : "tasks";
 
-        String emailContent = mailCreatorService.buildNumberOfTasksEmail("Currently in database you got: " + size + " " + taskWord);
+        mailCreatorService.buildNumberOfTasksEmail("Currently in database you got: " + size + " " + taskWord);
 
         simpleEmailService.send(
                 new Mail(
                         adminConfig.getAdminMail(),
                         SUBJECT,
-                        emailContent,
+                        "Currently in database you got: " + size + " " + taskWord,
                         null
                 )
         );
